@@ -1,0 +1,25 @@
+(set-logic SLIA)
+
+(synth-fun f ((x String) (y String)) String
+  ((Start String) (StartInt Int) (StartBool Bool) (StartBool_1 Bool) (StartInt_3 Int) (StartInt_2 Int) (StartInt_4 Int) (StartInt_1 Int) (Start_3 String) (Start_4 String) (StartInt_6 Int) (Start_1 String) (Start_2 String) (StartInt_5 Int))
+  ((Start String ("1" "a" (str.++ Start_1 Start_1) (str.at Start StartInt) (str.substr Start_1 StartInt_1 StartInt_2) (str.from_int StartInt_3)))
+   (StartInt Int (1 (str.len Start_4)))
+   (StartBool Bool (true false (not StartBool_1) (str.< Start_1 Start_1) (str.<= Start_3 Start_3) (str.contains Start_2 Start)))
+   (StartBool_1 Bool (true false (str.contains Start_1 Start_1) (= Start Start_2) (= StartInt_2 StartInt_2) (<= StartInt_2 StartInt_4)))
+   (StartInt_3 Int (0 (str.len Start_1) (str.to_int Start)))
+   (StartInt_2 Int (1 (str.len Start_1) (str.to_int Start)))
+   (StartInt_4 Int (0))
+   (StartInt_1 Int (1 (str.len Start_2) (str.indexof Start_2 Start_2 StartInt_4) (str.to_int Start_3)))
+   (Start_3 String (y x "0" (str.at Start StartInt_3) (str.replace Start_3 Start_2 Start_1) (ite StartBool Start_4 Start_3)))
+   (Start_4 String ("0" (str.substr Start_1 StartInt_3 StartInt)))
+   (StartInt_6 Int (0 (str.indexof Start_4 Start_3 StartInt)))
+   (Start_1 String ("0" "" (str.substr Start_3 StartInt_1 StartInt_5) (str.replace Start Start_4 Start_4)))
+   (Start_2 String (""))
+   (StartInt_5 Int (1 0 (str.indexof Start_3 Start_2 StartInt_6)))))
+
+(declare-var x String)
+(declare-var y String)
+
+(constraint (= (f x y) (str.++ "b" (str.replace y "" x))))
+
+(check-synth)

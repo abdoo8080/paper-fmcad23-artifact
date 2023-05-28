@@ -1,0 +1,16 @@
+(set-logic BV)
+
+(synth-fun f ((x (_ BitVec 8)) (y (_ BitVec 8))) (_ BitVec 8)
+  ((Start (_ BitVec 8)) (StartBool Bool) (StartBool_1 Bool) (StartBool_2 Bool) (Start_1 (_ BitVec 8)))
+  ((Start (_ BitVec 8) (#b00000000 (bvnot Start) (bvor Start Start) (ite StartBool Start_1 Start_1)))
+   (StartBool Bool (true false (and StartBool StartBool_1) (or StartBool_2 StartBool)))
+   (StartBool_1 Bool (false (not StartBool) (and StartBool_1 StartBool_2) (bvult Start_1 Start)))
+   (StartBool_2 Bool (true (bvult Start_1 Start)))
+   (Start_1 (_ BitVec 8) (#b00000001 #b10100101 (bvnot Start_1) (bvand Start_1 Start) (bvadd Start Start) (bvudiv Start_1 Start_1) (bvlshr Start Start)))))
+
+(declare-var x (_ BitVec 8))
+(declare-var y (_ BitVec 8))
+
+(constraint (= (f x y) (bvadd (bvlshr y y) #b10100101)))
+
+(check-synth)

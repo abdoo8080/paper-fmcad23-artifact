@@ -1,0 +1,23 @@
+(set-logic BV)
+
+(synth-fun f ((x (_ BitVec 8)) (y (_ BitVec 8))) (_ BitVec 8)
+  ((Start (_ BitVec 8)) (StartBool Bool) (StartBool_1 Bool) (Start_8 (_ BitVec 8)) (Start_1 (_ BitVec 8)) (Start_7 (_ BitVec 8)) (Start_2 (_ BitVec 8)) (Start_6 (_ BitVec 8)) (Start_5 (_ BitVec 8)) (Start_4 (_ BitVec 8)) (StartBool_2 Bool) (Start_3 (_ BitVec 8)))
+  ((Start (_ BitVec 8) (#b10100101 (bvand Start_1 Start_1) (bvadd Start_2 Start_1) (bvudiv Start_2 Start_2) (bvurem Start Start_3)))
+   (StartBool Bool (true (bvult Start_3 Start_8)))
+   (StartBool_1 Bool (false (or StartBool StartBool_2) (bvult Start_1 Start_1)))
+   (Start_8 (_ BitVec 8) (#b00000000 (bvneg Start_8) (bvmul Start_1 Start_3) (bvudiv Start Start_2) (bvurem Start_8 Start_2) (bvlshr Start_8 Start_5) (ite StartBool_1 Start_5 Start)))
+   (Start_1 (_ BitVec 8) (y #b00000001 (bvneg Start_7) (bvlshr Start_1 Start_2)))
+   (Start_7 (_ BitVec 8) (x (bvneg Start_1) (bvand Start_5 Start_5) (bvor Start_4 Start_6) (bvurem Start_4 Start_5) (bvshl Start_5 Start_4) (bvlshr Start_1 Start_5) (ite StartBool Start_7 Start_8)))
+   (Start_2 (_ BitVec 8) (y #b00000001 #b10100101 #b00000000 (bvneg Start_3) (bvand Start_2 Start) (bvudiv Start_3 Start_2) (bvurem Start_2 Start) (bvlshr Start_6 Start)))
+   (Start_6 (_ BitVec 8) (#b10100101 #b00000001 (bvnot Start) (bvand Start_2 Start) (bvadd Start_2 Start) (bvmul Start_4 Start_3) (bvshl Start_2 Start_5) (ite StartBool Start_5 Start_6)))
+   (Start_5 (_ BitVec 8) (#b10100101 #b00000000 (bvadd Start_1 Start_6) (bvudiv Start Start_2) (bvurem Start_2 Start_6) (bvlshr Start Start_4) (ite StartBool Start_6 Start_4)))
+   (Start_4 (_ BitVec 8) (x (bvnot Start_4) (bvneg Start_4) (bvadd Start_2 Start_2) (bvudiv Start_4 Start_2) (bvurem Start_5 Start_2) (bvlshr Start_5 Start_3) (ite StartBool Start_2 Start_4)))
+   (StartBool_2 Bool (false))
+   (Start_3 (_ BitVec 8) (#b10100101 (bvneg Start_2) (bvudiv Start_3 Start_4) (bvshl Start_4 Start_4)))))
+
+(declare-var x (_ BitVec 8))
+(declare-var y (_ BitVec 8))
+
+(constraint (= (f x y) (bvudiv y (bvnot x))))
+
+(check-synth)

@@ -1,0 +1,23 @@
+(set-logic BV)
+
+(synth-fun f ((x (_ BitVec 8)) (y (_ BitVec 8))) (_ BitVec 8)
+  ((Start (_ BitVec 8)) (StartBool Bool) (Start_2 (_ BitVec 8)) (StartBool_2 Bool) (Start_5 (_ BitVec 8)) (StartBool_4 Bool) (StartBool_1 Bool) (Start_4 (_ BitVec 8)) (Start_6 (_ BitVec 8)) (Start_3 (_ BitVec 8)) (StartBool_3 Bool) (Start_1 (_ BitVec 8)))
+  ((Start (_ BitVec 8) (y #b00000000 #b10100101 (bvnot Start) (bvadd Start Start) (bvurem Start Start) (bvshl Start Start) (ite StartBool_1 Start_1 Start_1)))
+   (StartBool Bool (true false (not StartBool) (bvult Start_1 Start_2)))
+   (Start_2 (_ BitVec 8) (y (bvnot Start_5) (bvand Start_2 Start_6) (bvor Start Start_4) (bvmul Start Start_4) (bvshl Start_6 Start_5) (bvlshr Start_6 Start_2)))
+   (StartBool_2 Bool (false (not StartBool) (and StartBool_3 StartBool_2) (or StartBool StartBool_2) (bvult Start_2 Start_4)))
+   (Start_5 (_ BitVec 8) (x #b00000001 (bvnot Start_2) (bvneg Start_6) (bvor Start Start) (bvmul Start_4 Start_4) (bvudiv Start_2 Start_1)))
+   (StartBool_4 Bool (true false (not StartBool_4) (or StartBool_1 StartBool_2)))
+   (StartBool_1 Bool (false true (not StartBool_4) (or StartBool_1 StartBool) (bvult Start Start_4)))
+   (Start_4 (_ BitVec 8) (#b00000001 (bvnot Start_4) (bvneg Start_6) (bvor Start_4 Start_1) (bvmul Start_5 Start_6) (bvudiv Start_3 Start_6) (bvshl Start_1 Start_4) (ite StartBool_2 Start_3 Start_4)))
+   (Start_6 (_ BitVec 8) (x #b10100101 #b00000000 y (bvnot Start) (bvneg Start_2) (bvand Start Start_4) (bvudiv Start_6 Start_4) (bvshl Start_5 Start_4) (bvlshr Start_4 Start_6)))
+   (Start_3 (_ BitVec 8) (#b10100101 #b00000001 (bvand Start Start_4) (bvor Start_5 Start_3) (bvmul Start_5 Start_4) (bvudiv Start_4 Start) (bvurem Start_3 Start_6) (bvshl Start_6 Start_1) (bvlshr Start_5 Start_1) (ite StartBool Start_6 Start_5)))
+   (StartBool_3 Bool (false))
+   (Start_1 (_ BitVec 8) (#b00000000 x #b00000001 y (bvnot Start_1) (bvand Start_2 Start_1) (bvor Start Start_2) (bvadd Start Start) (bvshl Start Start) (bvlshr Start_3 Start_3) (ite StartBool Start_3 Start_2)))))
+
+(declare-var x (_ BitVec 8))
+(declare-var y (_ BitVec 8))
+
+(constraint (= (f x y) (bvudiv #b00000001 (bvurem #b10100101 x))))
+
+(check-synth)

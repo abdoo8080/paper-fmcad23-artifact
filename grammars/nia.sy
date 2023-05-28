@@ -1,0 +1,26 @@
+; $ artifact/cvc5 --dag-thresh=0 --sygus-stream --sygus-enum=random --sygus-enum-random-p=0.5 grammars/nia-ex.sy > queries/nia.sy
+
+(set-logic NIA) ; not supported even though *, div, mod are supported
+
+(synth-fun f ((x Int) (y Int)) Int
+  ((Start Int) (StartBool Bool))
+  ((Start Int (x y 0 1 2 3 4 5
+               (- Start)
+               (- Start Start)
+               (+ Start Start)
+               (* Start Start)
+               (div Start Start)
+               (mod Start Start)
+               (abs Start)
+               (ite StartBool Start Start)))
+   (StartBool Bool (false true
+                    (not StartBool)
+                    (and StartBool StartBool)
+                    (or StartBool StartBool)
+                    (< Start Start)
+                    (<= Start Start)
+                    (= Start Start)
+                    (>= Start Start)
+                    (> Start Start)))))
+
+(check-synth)

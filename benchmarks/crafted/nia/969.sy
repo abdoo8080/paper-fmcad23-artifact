@@ -1,0 +1,32 @@
+(set-logic NIA)
+
+(synth-fun f ((x Int) (y Int)) Int
+  ((Start Int) (StartBool Bool) (Start_14 Int) (Start_13 Int) (Start_1 Int) (StartBool_5 Bool) (Start_10 Int) (Start_4 Int) (Start_6 Int) (Start_7 Int) (StartBool_1 Bool) (StartBool_2 Bool) (StartBool_4 Bool) (Start_8 Int) (Start_12 Int) (StartBool_3 Bool) (Start_2 Int) (Start_11 Int) (Start_3 Int) (Start_9 Int) (Start_5 Int))
+  ((Start Int (y (- Start_1 Start) (* Start_2 Start) (div Start_1 Start_3) (mod Start_3 Start_3)))
+   (StartBool Bool (false true (not StartBool_4) (<= Start_5 Start_10) (= Start_12 Start_13) (>= Start Start)))
+   (Start_14 Int (1 0 (+ Start_8 Start_6) (* Start_12 Start_10) (div Start_11 Start_7) (abs Start_2)))
+   (Start_13 Int (x (- Start_14) (- Start_10 Start_5) (+ Start Start_9) (* Start_7 Start_9) (div Start_4 Start_13) (abs Start_4)))
+   (Start_1 Int (4 (+ Start_3 Start_6) (abs Start_8)))
+   (StartBool_5 Bool (true (not StartBool_3) (< Start_8 Start)))
+   (Start_10 Int (4 (- Start_10 Start_11) (+ Start_1 Start_5)))
+   (Start_4 Int (y 0 (- Start_1) (- Start Start_4) (div Start_5 Start_6)))
+   (Start_6 Int (5 2 1 (- Start_5 Start_1) (+ Start_2 Start_1) (mod Start_3 Start_7)))
+   (Start_7 Int (3 2 0 (mod Start_7 Start_1) (ite StartBool_2 Start_6 Start_5)))
+   (StartBool_1 Bool (true false (and StartBool_4 StartBool_4) (<= Start Start_1) (> Start_6 Start_9)))
+   (StartBool_2 Bool (false true (and StartBool_3 StartBool_3) (or StartBool_1 StartBool_3) (<= Start_8 Start_5)))
+   (StartBool_4 Bool (false (< Start Start_2) (<= Start Start_8) (> Start_9 Start_2)))
+   (Start_8 Int (5 x 1 2 0 4 (- Start_9 Start_1)))
+   (Start_12 Int (4 y 0 2 x (- Start_1) (- Start_1 Start_6) (+ Start_10 Start_13) (div Start_14 Start_14)))
+   (StartBool_3 Bool (false true (= Start_9 Start_5) (>= Start_6 Start_5)))
+   (Start_2 Int (0 (- Start_7) (- Start Start_10) (+ Start_2 Start_1) (abs Start_6) (ite StartBool_1 Start Start_4)))
+   (Start_11 Int (y 2 (- Start_2) (* Start_9 Start_10) (div Start_4 Start) (abs Start_1) (ite StartBool_5 Start_9 Start_6)))
+   (Start_3 Int (3 (- Start_3) (- Start Start_2) (* Start_1 Start) (div Start Start_1) (ite StartBool_1 Start_4 Start_1)))
+   (Start_9 Int (5 y (* Start_1 Start)))
+   (Start_5 Int (x (+ Start_6 Start) (* Start_7 Start_2) (mod Start_2 Start_3) (ite StartBool Start Start_1)))))
+
+(declare-var x Int)
+(declare-var y Int)
+
+(constraint (= (f x y) (mod (div 0 0) 2)))
+
+(check-synth)

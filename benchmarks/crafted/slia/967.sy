@@ -1,0 +1,28 @@
+(set-logic SLIA)
+
+(synth-fun f ((x String) (y String)) String
+  ((Start String) (StartInt Int) (StartBool Bool) (Start_1 String) (StartBool_1 Bool) (StartInt_4 Int) (Start_4 String) (Start_8 String) (StartInt_3 Int) (Start_3 String) (Start_7 String) (StartInt_2 Int) (Start_6 String) (StartBool_2 Bool) (Start_5 String) (StartInt_1 Int) (Start_2 String))
+  ((Start String ("1" (str.++ Start_1 Start_1) (str.substr Start_2 StartInt StartInt_1) (ite StartBool_1 Start Start)))
+   (StartInt Int (0 1))
+   (StartBool Bool (true (str.suffixof Start_8 Start_1) (str.contains Start_3 Start_1) (= Start_8 Start_6)))
+   (Start_1 String ("" (str.++ Start_4 Start_1) (str.from_int StartInt_3) (ite StartBool_2 Start_2 Start_8)))
+   (StartBool_1 Bool (true (str.suffixof Start_3 Start_1)))
+   (StartInt_4 Int (1 0 (str.indexof Start_2 Start_5 StartInt_1)))
+   (Start_4 String ("0" "b" (str.from_int StartInt_3)))
+   (Start_8 String ("" "0" (str.++ Start_6 Start_1) (str.at Start_6 StartInt) (str.replace Start Start_8 Start_7)))
+   (StartInt_3 Int (1 (str.indexof Start_1 Start_2 StartInt_1)))
+   (Start_3 String ("1" (str.at Start_3 StartInt_2) (str.replace Start Start_4 Start_1)))
+   (Start_7 String ("b" y (str.replace Start_4 Start Start) (str.from_int StartInt)))
+   (StartInt_2 Int (0 (str.len Start_2) (str.indexof Start_4 Start StartInt_4)))
+   (Start_6 String (y "a" "" x "0" "1" "b" (str.replace Start_7 Start_5 Start_6) (str.from_int StartInt_1) (ite StartBool_2 Start_5 Start_3)))
+   (StartBool_2 Bool (true false (not StartBool) (str.< Start_1 Start_4) (str.suffixof Start_7 Start_2) (str.contains Start_2 Start) (= StartInt_1 StartInt_1)))
+   (Start_5 String ("0" (str.++ Start_6 Start_5) (str.at Start_6 StartInt_4) (str.replace Start Start_5 Start_5) (str.from_int StartInt_1)))
+   (StartInt_1 Int (0 1))
+   (Start_2 String (y (str.from_int StartInt_3) (ite StartBool Start_3 Start_6)))))
+
+(declare-var x String)
+(declare-var y String)
+
+(constraint (= (f x y) (str.substr "1" 0 (str.to_int (str.replace "a" x "")))))
+
+(check-synth)

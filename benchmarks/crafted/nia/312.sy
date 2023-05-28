@@ -1,0 +1,27 @@
+(set-logic NIA)
+
+(synth-fun f ((x Int) (y Int)) Int
+  ((Start Int) (StartBool Bool) (Start_11 Int) (Start_12 Int) (Start_6 Int) (Start_5 Int) (Start_8 Int) (Start_9 Int) (StartBool_1 Bool) (Start_4 Int) (Start_7 Int) (Start_1 Int) (Start_2 Int) (Start_10 Int) (Start_3 Int) (StartBool_2 Bool))
+  ((Start Int (5 (- Start_1 Start) (+ Start_1 Start_2) (div Start_1 Start_1) (abs Start_3)))
+   (StartBool Bool (false (not StartBool) (< Start_1 Start_3) (<= Start_3 Start_2) (= Start_11 Start) (>= Start_5 Start_11)))
+   (Start_11 Int (2 5 y 1 (div Start_8 Start_8)))
+   (Start_12 Int (5 (- Start) (- Start_2 Start) (* Start_3 Start_3) (div Start_10 Start_11) (abs Start_4)))
+   (Start_6 Int (1 2 4 5 x y 3 0 (- Start Start_7) (+ Start_1 Start_8) (* Start_3 Start_8) (mod Start_7 Start)))
+   (Start_5 Int (3 (+ Start_6 Start_8) (div Start_5 Start_4) (mod Start_8 Start_5) (ite StartBool_1 Start_4 Start_6)))
+   (Start_8 Int (2 5 x (+ Start_9 Start_7) (mod Start_8 Start_2)))
+   (Start_9 Int (x 4 1 (- Start Start_5) (div Start_7 Start_9) (abs Start_9) (ite StartBool_1 Start_9 Start_1)))
+   (StartBool_1 Bool (true false (< Start_8 Start_6) (<= Start Start_2) (>= Start_9 Start_2) (> Start_6 Start_5)))
+   (Start_4 Int (x y (- Start_5 Start_5) (+ Start_2 Start_4) (div Start_6 Start)))
+   (Start_7 Int (x (- Start_6 Start_3) (div Start Start_2) (mod Start_1 Start_3)))
+   (Start_1 Int (2 5 (- Start_1) (- Start_2 Start_7) (+ Start_8 Start_9) (ite StartBool_1 Start_10 Start_6)))
+   (Start_2 Int (x (- Start_2 Start_5) (+ Start_6 Start_1) (* Start_7 Start_8) (div Start_8 Start_4) (ite StartBool Start_7 Start_5)))
+   (Start_10 Int (x (- Start_3 Start_6) (* Start_4 Start_2) (mod Start_11 Start_10) (abs Start_8) (ite StartBool_2 Start_3 Start_3)))
+   (Start_3 Int (2 y 3 (- Start_1 Start) (* Start_3 Start_3) (div Start_2 Start_4) (abs Start_3)))
+   (StartBool_2 Bool (false true (< Start_9 Start_5) (<= Start_2 Start_3) (= Start_1 Start_5) (>= Start_6 Start_8) (> Start_12 Start_2)))))
+
+(declare-var x Int)
+(declare-var y Int)
+
+(constraint (= (f x y) (mod x y)))
+
+(check-synth)

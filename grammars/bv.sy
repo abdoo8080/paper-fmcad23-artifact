@@ -1,0 +1,26 @@
+; $ artifact/cvc5 --dag-thresh=0 --sygus-stream --sygus-enum=random --sygus-enum-random-p=0.5 grammars/bv-ex.sy > queries/bv.sy
+
+(set-logic BV)
+
+(synth-fun f ((x (_ BitVec 8)) (y (_ BitVec 8))) (_ BitVec 8)
+  ((Start (_ BitVec 8)) (StartBool Bool))
+  ((Start (_ BitVec 8) (x y #x00 #x01 #xa5
+                        (bvnot Start)
+                        (bvneg Start)
+                        (bvand Start Start)
+                        (bvor Start Start)
+                        (bvadd Start Start)
+                        (bvmul Start Start)
+                        (bvudiv Start Start)
+                        (bvurem Start Start)
+                        (bvshl Start Start)
+                        (bvlshr Start Start)
+                        (ite StartBool Start Start)))
+   (StartBool Bool (false true
+                    (not StartBool)
+                    (and StartBool StartBool)
+                    (or StartBool StartBool)
+                    (bvult Start Start) ; supported internally but not by the parser...
+                    ))))
+
+(check-synth)

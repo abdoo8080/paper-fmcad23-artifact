@@ -1,0 +1,26 @@
+(set-logic NIA)
+
+(synth-fun f ((x Int) (y Int)) Int
+  ((Start Int) (StartBool Bool) (StartBool_4 Bool) (Start_3 Int) (Start_5 Int) (Start_6 Int) (StartBool_2 Bool) (Start_7 Int) (Start_8 Int) (StartBool_1 Bool) (Start_1 Int) (Start_9 Int) (Start_4 Int) (Start_2 Int) (StartBool_3 Bool))
+  ((Start Int (x 5 (* Start_1 Start_1) (mod Start_2 Start_3)))
+   (StartBool Bool (true (and StartBool_3 StartBool_2) (<= Start Start_7) (= Start_3 Start_3) (>= Start_2 Start_5) (> Start_3 Start_3)))
+   (StartBool_4 Bool (true false (not StartBool_2) (<= Start Start_6) (= Start_2 Start_6)))
+   (Start_3 Int (1 (- Start_1) (+ Start_3 Start_1) (* Start_4 Start_1) (div Start Start_5) (mod Start_3 Start) (abs Start_1)))
+   (Start_5 Int (1 (mod Start_1 Start_5) (ite StartBool Start Start_6)))
+   (Start_6 Int (3 (- Start_4 Start_1) (* Start Start_2) (div Start_7 Start_1) (mod Start_5 Start_3)))
+   (StartBool_2 Bool (true (not StartBool_2) (and StartBool_1 StartBool) (or StartBool_1 StartBool_2) (< Start_4 Start_6) (<= Start_6 Start_9) (>= Start_2 Start_9)))
+   (Start_7 Int (0 y (- Start_3 Start_7) (+ Start_7 Start_1) (div Start_1 Start) (mod Start_1 Start_3) (abs Start_3) (ite StartBool_1 Start_5 Start_8)))
+   (Start_8 Int (3 y (- Start_6 Start_5) (abs Start_1)))
+   (StartBool_1 Bool (true (and StartBool_1 StartBool_2) (or StartBool StartBool_1) (< Start_5 Start_8) (<= Start_3 Start_7) (= Start_8 Start_8) (>= Start_3 Start_2) (> Start_7 Start_1)))
+   (Start_1 Int (0 5 1 3 (- Start_2 Start_5) (* Start_1 Start) (ite StartBool_3 Start_7 Start_6)))
+   (Start_9 Int (0 (- Start) (abs Start_6)))
+   (Start_4 Int (3 (- Start_7 Start_3) (+ Start_7 Start_7) (ite StartBool_2 Start_2 Start)))
+   (Start_2 Int (2 (- Start Start_4) (* Start_1 Start_9) (div Start_9 Start_7) (mod Start_1 Start_6)))
+   (StartBool_3 Bool (false true (not StartBool_4) (or StartBool_2 StartBool_3) (< Start_2 Start_8)))))
+
+(declare-var x Int)
+(declare-var y Int)
+
+(constraint (= (f x y) (* (- (mod 5 (- x)) (div 2 x)) (- (abs (+ x 3)) 5))))
+
+(check-synth)

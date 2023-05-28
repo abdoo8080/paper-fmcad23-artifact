@@ -1,0 +1,26 @@
+(set-logic NIA)
+
+(synth-fun f ((x Int) (y Int)) Int
+  ((Start Int) (StartBool Bool) (Start_12 Int) (Start_5 Int) (Start_11 Int) (Start_3 Int) (Start_7 Int) (Start_2 Int) (Start_4 Int) (StartBool_1 Bool) (Start_6 Int) (Start_8 Int) (Start_1 Int) (Start_10 Int) (Start_9 Int))
+  ((Start Int (y 3 2 0 5 x (- Start) (- Start Start) (mod Start_1 Start_1) (ite StartBool_1 Start_2 Start_3)))
+   (StartBool Bool (true false (< Start_11 Start_4) (<= Start_8 Start_12) (> Start_3 Start_6)))
+   (Start_12 Int (2 4 (* Start_2 Start_5) (mod Start_1 Start_1) (abs Start)))
+   (Start_5 Int (1 5 (- Start_2 Start_1) (+ Start_6 Start_6) (div Start Start) (abs Start_3) (ite StartBool Start_2 Start_4)))
+   (Start_11 Int (y 1 0 3 (- Start_2) (- Start Start_10) (+ Start_11 Start_4) (mod Start_12 Start_11) (abs Start_5) (ite StartBool_1 Start_5 Start_2)))
+   (Start_3 Int (0 (- Start) (div Start_2 Start_2)))
+   (Start_7 Int (0 x (div Start_4 Start_5) (mod Start_8 Start_8)))
+   (Start_2 Int (5 (- Start_1) (- Start_4 Start) (+ Start Start_4) (* Start Start_1) (mod Start Start) (abs Start) (ite StartBool Start_4 Start_4)))
+   (Start_4 Int (5 4 (- Start_3) (+ Start_4 Start_1)))
+   (StartBool_1 Bool (false (and StartBool_1 StartBool_1) (< Start_3 Start_1) (>= Start_2 Start_1) (> Start_3 Start_5)))
+   (Start_6 Int (4 1 (- Start_1 Start_7) (div Start_4 Start_3) (abs Start_3)))
+   (Start_8 Int (y (- Start_8) (+ Start_2 Start_8) (div Start_4 Start_9) (mod Start_8 Start_10) (abs Start_4) (ite StartBool_1 Start Start_2)))
+   (Start_1 Int (5 (+ Start_9 Start_1) (div Start_5 Start_2) (abs Start_5)))
+   (Start_10 Int (1 2 x (- Start_9) (- Start Start_2) (+ Start Start_8) (div Start_2 Start_3) (abs Start_4)))
+   (Start_9 Int (4 3 5 y (- Start_2) (- Start_1 Start_6) (+ Start_10 Start_4)))))
+
+(declare-var x Int)
+(declare-var y Int)
+
+(constraint (= (f x y) (+ (abs (* 3 x)) (abs y))))
+
+(check-synth)

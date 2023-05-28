@@ -1,0 +1,34 @@
+; $ artifact/cvc5 --dag-thresh=0 --sygus-stream --sygus-enum=random --sygus-enum-random-p=0.5 grammars/slia-ex.sy > queries/slia.sy
+
+(set-logic SLIA)
+
+(synth-fun f ((x String) (y String)) String
+  ((Start String) (StartInt Int) (StartBool Bool))
+  ((Start String (x y "" "0" "1" "a" "b"
+                  (str.++ Start Start)
+                  (str.at Start StartInt)
+                  (str.substr Start StartInt StartInt)
+                  (str.replace Start Start Start)
+                  ; (str.replace_all Start Start Start)
+                  ; (str.from_code StartInt)
+                  (str.from_int StartInt)
+                  (ite StartBool Start Start)))
+   (StartInt Int (0 1
+                  (str.len Start)
+                  (str.indexof Start Start StartInt)
+                  ; (str.to_code Start)
+                  (str.to_int Start)))
+   (StartBool Bool (false true
+                    (not StartBool)
+                    (and StartBool StartBool)
+                    (str.< Start Start)
+                    (str.<= Start Start)
+                    (str.prefixof Start Start)
+                    (str.suffixof Start Start)
+                    (str.contains Start Start)
+                    ; (str.is_digit Start)
+                    (= Start Start)
+                    (= StartInt StartInt)
+                    (<= StartInt StartInt)))))
+
+(check-synth)

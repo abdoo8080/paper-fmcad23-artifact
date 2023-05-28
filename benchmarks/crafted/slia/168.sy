@@ -1,0 +1,28 @@
+(set-logic SLIA)
+
+(synth-fun f ((x String) (y String)) String
+  ((Start String) (StartInt Int) (StartBool Bool) (Start_8 String) (StartInt_5 Int) (Start_6 String) (Start_2 String) (StartInt_3 Int) (Start_1 String) (StartInt_2 Int) (Start_7 String) (Start_4 String) (Start_5 String) (Start_3 String) (StartInt_1 Int) (StartInt_4 Int) (StartInt_6 Int))
+  ((Start String (y (str.at Start_1 StartInt_1) (str.substr Start StartInt_2 StartInt)))
+   (StartInt Int (0 1 (str.len Start_1) (str.indexof Start_1 Start_7 StartInt_2)))
+   (StartBool Bool (true false (not StartBool) (and StartBool StartBool) (str.< Start_1 Start) (str.<= Start_7 Start_4) (str.contains Start_8 Start_7) (<= StartInt_5 StartInt_6)))
+   (Start_8 String ("a" (str.++ Start_1 Start_6) (str.at Start_4 StartInt_6) (str.substr Start_2 StartInt_5 StartInt) (ite StartBool Start Start_5)))
+   (StartInt_5 Int (1 0 (str.indexof Start_5 Start_6 StartInt)))
+   (Start_6 String ("b" (str.++ Start_4 Start_6) (str.replace Start Start_3 Start_6) (str.from_int StartInt)))
+   (Start_2 String (x "b" "a" (str.at Start_3 StartInt_2) (str.substr Start_3 StartInt_2 StartInt_3) (str.from_int StartInt)))
+   (StartInt_3 Int (0 1 (str.indexof Start_4 Start_4 StartInt)))
+   (Start_1 String (y (str.replace Start_5 Start_2 Start_6) (str.from_int StartInt_2) (ite StartBool Start Start_3)))
+   (StartInt_2 Int (1 (str.indexof Start Start_2 StartInt_1)))
+   (Start_7 String ("" "1" y "0" "b" "a" x (str.++ Start Start_5) (str.from_int StartInt)))
+   (Start_4 String ("1" (str.replace Start_1 Start_2 Start_2) (ite StartBool Start_1 Start_3)))
+   (Start_5 String ("0" (str.at Start StartInt_4) (str.from_int StartInt_2)))
+   (Start_3 String ("0" "1" y x "" "b" (str.++ Start_5 Start_5) (str.from_int StartInt)))
+   (StartInt_1 Int (0 1 (str.len Start_4) (str.indexof Start_6 Start_3 StartInt_2) (str.to_int Start_6)))
+   (StartInt_4 Int (0 (str.to_int Start_5)))
+   (StartInt_6 Int (1))))
+
+(declare-var x String)
+(declare-var y String)
+
+(constraint (= (f x y) (str.at "a" (str.len (str.replace "" x "1")))))
+
+(check-synth)

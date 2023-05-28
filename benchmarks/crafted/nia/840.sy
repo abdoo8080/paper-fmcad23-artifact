@@ -1,0 +1,28 @@
+(set-logic NIA)
+
+(synth-fun f ((x Int) (y Int)) Int
+  ((Start Int) (StartBool Bool) (Start_2 Int) (Start_11 Int) (Start_3 Int) (Start_10 Int) (Start_1 Int) (Start_4 Int) (Start_5 Int) (Start_6 Int) (Start_9 Int) (Start_8 Int) (Start_12 Int) (Start_13 Int) (StartBool_1 Bool) (Start_7 Int) (StartBool_2 Bool))
+  ((Start Int (y (- Start) (mod Start_1 Start_2) (abs Start_2) (ite StartBool_1 Start_3 Start_3)))
+   (StartBool Bool (true false (not StartBool) (<= Start_10 Start_10) (= Start_1 Start_13)))
+   (Start_2 Int (5 y 4 1 x 2 (- Start_9) (+ Start_10 Start_7) (mod Start Start_3)))
+   (Start_11 Int (3 (- Start_3) (- Start_2 Start_5) (* Start_1 Start_8) (abs Start)))
+   (Start_3 Int (3 (- Start_3 Start_3) (+ Start Start_4) (abs Start_5)))
+   (Start_10 Int (4 (- Start_7)))
+   (Start_1 Int (4 (- Start_10) (div Start_5 Start_13)))
+   (Start_4 Int (x (- Start) (* Start_3 Start_6) (div Start_1 Start_1) (mod Start_6 Start_1) (abs Start)))
+   (Start_5 Int (2 (+ Start_5 Start) (* Start_3 Start_1) (div Start_4 Start) (abs Start_5)))
+   (Start_6 Int (0 (* Start Start) (div Start_3 Start_6) (mod Start Start_6) (abs Start_7)))
+   (Start_9 Int (1 (- Start_9 Start_4) (div Start_10 Start_1) (abs Start_4) (ite StartBool_1 Start_2 Start_6)))
+   (Start_8 Int (0 (- Start_9) (- Start_2 Start_6) (+ Start_3 Start_11) (abs Start_6) (ite StartBool_2 Start_3 Start_7)))
+   (Start_12 Int (x (- Start_9 Start_6) (* Start Start_3) (mod Start_5 Start_7) (abs Start_11) (ite StartBool_1 Start_13 Start_9)))
+   (Start_13 Int (4 (+ Start_1 Start_13) (mod Start_6 Start_9)))
+   (StartBool_1 Bool (true false (not StartBool) (and StartBool_2 StartBool_1) (< Start Start_4) (<= Start_1 Start_8) (= Start_7 Start) (>= Start_6 Start_9) (> Start_5 Start_5)))
+   (Start_7 Int (2 (- Start_4 Start_4) (div Start Start_2) (mod Start_1 Start_4) (abs Start_4)))
+   (StartBool_2 Bool (true (>= Start_8 Start_2) (> Start_7 Start_12)))))
+
+(declare-var x Int)
+(declare-var y Int)
+
+(constraint (= (f x y) (abs (div 5 (abs y)))))
+
+(check-synth)
